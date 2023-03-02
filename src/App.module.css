@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer components{
+  input {
+    appearance: textfield;
+  }
+  .inner_section{
+    @apply bg-white p-8 rounded-3xl text-lg text-primary-cyan-dark-gray md:flex md:gap-24
+  }
+  .left_section{
+    @apply md:w-[25rem]
+  }
+  .left_section > div{
+    @apply flex flex-col
+  }
+
+  .bill_input_section input{
+    @apply bg-primary-cyan-gray-lighter p-2 rounded-md my-2 placeholder:text-right text-right text-3xl
+  }
+
+  .tip_selection_section > div {
+    @apply grid grid-cols-3
+  }
+  .tip_selection_section > div > button {
+    @apply bg-primary-cyan-darker text-white px-6 py-3 m-2 rounded-md hover:bg-primary-cyan-dark-gray focus:bg-primary-cyan
+  }
+  .tip_selection_section > div > input {
+    @apply bg-primary-cyan-gray-lighter placeholder:text-primary-cyan-dark-gray text-center text-primary-cyan-darker px-6 py-3 m-2 rounded-md hover:ring-4 hover:ring-primary-cyan-gray-light focus:outline-none focus:bg-primary-cyan focus:placeholder:text-white
+  }
+
+  .number_of_people_section input {
+    @apply bg-primary-cyan-gray-lighter p-2 rounded-md my-2 placeholder:text-right text-right text-3xl
+  }
+
+
+
+
+}
