@@ -1,32 +1,13 @@
 import { useState } from 'react';
 import style from './App.module.css';
 import Layout from './Components/Layout';
+import { calculateTipPerPerson,calculateTotalPerPerson } from './tipCalculator';
 
 function App() {
   const [Bill,setBill] = useState(0);
   const [tipPercent,setTipPercent] = useState(0);
   const [numOfPeople,setNumOfPeople] = useState(0);
 
-  function calculateTipPerPerson(){
-    let totalTip = Bill * (tipPercent / 100);
-    let tipPerPerson = totalTip / numOfPeople;
-
-    if(tipPerPerson > 0 && tipPerPerson < 10000) {
-      return `$${tipPerPerson.toFixed(2)}`
-    }
-    else{
-      return "$0"
-    }
-  }
-  function calculateTotalPerPerson(){
-    let totalPerPerson = Bill / numOfPeople;
-    if(totalPerPerson > 0 && totalPerPerson < 10000){
-      return `$${totalPerPerson.toFixed(2)}`
-    }
-    else{
-      return "$0"
-    }
-  }
   function handleReset(e){
     e.preventDefault();
     setBill(0);
@@ -34,8 +15,8 @@ function App() {
     setNumOfPeople(0);
     document.getElementById('bill-input').value = "";
     document.getElementById('num-of-people-input').value = "";
-
   }
+  
   return (
     <Layout>
       <div className={style.inner_section}>
@@ -67,7 +48,7 @@ function App() {
               <span>Tip Amount</span>
               <span>/ person</span>
             </div>
-            <span id='tip-amount-per-people-text' className='text-4xl'>{calculateTipPerPerson()}</span>
+            <span id='tip-amount-per-people-text' className='text-4xl'>{calculateTipPerPerson(Bill,tipPercent,numOfPeople)}</span>
           </div>
 
           <div className='flex items-center justify-between'>
@@ -75,7 +56,7 @@ function App() {
               <span>Total</span>
               <span>/ person</span>
             </div>
-            <span id='total-per-people-text' className='text-4xl'>{calculateTotalPerPerson()}</span>
+            <span id='total-per-people-text' className='text-4xl'>{calculateTotalPerPerson(Bill,numOfPeople)}</span>
           </div>
 
           <button onClick={e => handleReset(e)} className='bg-primary-cyan hover:bg-primary-cyan-gray-light text-primary-cyan-darker text-2xl w-full py-3 mt-20 rounded-md'>RESET</button>
